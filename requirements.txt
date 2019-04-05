@@ -1,3 +1,4 @@
 textgenrnn
+tensorflow
 zappa
 flask

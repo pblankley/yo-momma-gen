@@ -1,0 +1,11 @@
+{
+    "prod": {
+        "app_function": "yo_momma_api.app",
+        "aws_region": "us-east-1",
+        "profile_name": "default",
+        "project_name": "yo-momma-gen",
+        "runtime": "python3.6",
+        "s3_bucket": "yo-momma-api",
+        "slim_handler": true
+    }
+}
