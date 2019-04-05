@@ -6,6 +6,7 @@
         "project_name": "yo-momma-gen",
         "runtime": "python3.6",
         "s3_bucket": "yo-momma-api",
+        "memory_size": 1024,
         "slim_handler": true
     }
 }

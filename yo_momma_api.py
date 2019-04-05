@@ -13,6 +13,7 @@ bucket = "yo-momma-api"
 key_weights = "textgenrnn_weights_yo.hdf5"
 key_vocab = "textgenrnn_vocab_yo.json"
 key_config = "textgenrnn_config_yo.json"
+lambda_loc = '/tmp/'
 have_model_files = os.path.isfile(key_weights) and os.path.isfile(
     key_vocab) and os.path.isfile(key_config)
 
@@ -21,9 +22,9 @@ have_model_files = os.path.isfile(key_weights) and os.path.isfile(
 if not have_model_files:
     logging.info('downloading')
     s3_bucket = boto3.resource('s3').Bucket(bucket)
-    s3_bucket.download_file(key_weights, key_weights)
-    s3_bucket.download_file(key_vocab, key_vocab)
-    s3_bucket.download_file(key_config, key_config)
+    s3_bucket.download_file(key_weights, lambda_loc + key_weights)
+    s3_bucket.download_file(key_vocab, lambda_loc + key_vocab)
+    s3_bucket.download_file(key_config, lambda_loc + key_config)
 
 
 # Load model
@@ -45,6 +46,11 @@ def gen_jokes():
                 on this api and can't generate more
                 jokes now, sorry :0"""
     return json.dumps({'joke': text})
+
+
+@app.route('/')
+def index():
+    return json.dumps({'message': 'api active'})
 
 
 def train():
